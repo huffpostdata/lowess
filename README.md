@@ -33,6 +33,8 @@ Lowess::lowess(points, f: 1.0, iter: 4).join(' ')
 
 *To build the gem*: `rake gem`
 
+*To release a new version*: `edit lib/lowess/version.rb; rake gem; gem push lowess-VERSION.gem`
+
 # License
 
 [GPL2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html) because the
