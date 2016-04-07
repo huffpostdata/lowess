@@ -8,4 +8,7 @@ end
 gemspec = Gem::Specification.load('lowess.gemspec')
 Rake::ExtensionTask.new('ext_lowess')
 
+Gem::PackageTask.new(gemspec) do |pkg|
+end
+
 task default: [ :compile, :test ]

@@ -123,12 +123,12 @@ class LowessTest < Minitest::Test
       Lowess::Point.new(1, 1.1),
       Lowess::Point.new(1.3, 1.3),
       Lowess::Point.new(1.7, 1.1),
-      Lowess::Point.new(2.1, 1.7)
+      Lowess::Point.new(2.1, 1.1)
     ]
 
-    expect = [ 1, 1.3, 1.7, 2.1 ].zip([ 1.1531, 1.1854, 1.3444, 1.6363]).map { |x, y| Lowess::Point.new(x, y) }
+    expect = '(1.0000, 1.1457) (1.3000, 1.1576) (1.7000, 1.1455) (2.1000, 1.0849)'
 
-    assert_near expect, Lowess::lowess(points, f: 1.0, iter: 4)
+    assert_equal expect, Lowess::lowess(points, f: 1.0, iter: 4).join(' ')
   end
 
   private

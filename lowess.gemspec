@@ -12,9 +12,12 @@ Gem::Specification.new do |s|
   s.description = 'Runs the Lowess smoothing algorithm'
   s.license = 'GPL2'
 
-  s.files = `git ls-files`.split('\n')
-  s.test_files = `git ls-files -- test/*`.split('\n')
+  s.files = `git ls-files`.split("\n")
+  s.test_files = `git ls-files -- test/*`.split("\n")
+
   s.require_paths = [ 'lib' ]
-  s.add_development_dependency 'rake-compiler', '0.9.7'
-  s.extensions = [ 'ext/ext_lowess/extconf.rb' ]
+  s.extensions = FileList['ext/ext_lowess/extconf.rb']
+
+  s.add_development_dependency 'rake', '~> 11'
+  s.add_development_dependency 'rake-compiler', '~> 0.9'
 end

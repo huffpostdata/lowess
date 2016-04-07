@@ -21,8 +21,8 @@ points = [
   Lowess::Point.new(2.1, 1.1)
 ]
 
-# returns (1, 1.1531) (1.3, 1.1854) (1.7, 1.3444) (2.1, 1.6363)
-Lowess::lowess(points, f: 1.0, iter: 4)
+# returns (1.0000, 1.1457) (1.3000, 1.1576) (1.7000, 1.1455) (2.1000, 1.0849)
+Lowess::lowess(points, f: 1.0, iter: 4).join(' ')
 ```
 
 # Development
@@ -30,6 +30,8 @@ Lowess::lowess(points, f: 1.0, iter: 4)
 *To run tests*: `rake`
 
 *To fiddle with C*: look in `ext/ext_lowess`
+
+*To build the gem*: `rake gem`
 
 # License
 
