@@ -25,8 +25,8 @@ lowess_ext_lowess(VALUE self, VALUE in_points, VALUE in_f, VALUE in_iter, VALUE 
   double* out_ys = ALLOC_N(double, len);
   double* rw = ALLOC_N(double, len);
   double* res = ALLOC_N(double, len);
-  VALUE* points = ALLOC_N(VALUE, len);
   VALUE point_args[2];
+  VALUE point;
   VALUE ret = rb_ary_new_capa(len);
   int i;
 
@@ -39,15 +39,14 @@ lowess_ext_lowess(VALUE self, VALUE in_points, VALUE in_f, VALUE in_iter, VALUE 
 
   clowess(xs, ys, len, f, iter, delta, out_ys, rw, res);
 
+  rb_ary_resize(ret, len); /* fill with Qnil */
   for (i = 0; i < len; i++) {
     point_args[0] = DBL2NUM(xs[i]);
     point_args[1] = DBL2NUM(out_ys[i]);
-    points[i] = rb_class_new_instance(2, point_args, Lowess_Point);
+    point = rb_class_new_instance(2, point_args, Lowess_Point);
+    RARRAY_ASET(ret, i, point);
   }
 
-  rb_ary_cat(ret, points, len);
-
-  xfree(points);
   xfree(res);
   xfree(rw);
   xfree(out_ys);
