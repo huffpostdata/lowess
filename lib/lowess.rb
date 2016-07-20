@@ -21,7 +21,7 @@ module Lowess
     iter = (options[:iter] || 3).to_i
     delta = (options[:delta] || (sorted_points.last.x - sorted_points.first.x).to_f / 100).to_f || 1.0
 
-    ext_lowess(points, f, iter, delta)
+    ext_lowess(sorted_points, f, iter, delta)
   end
 end
 
